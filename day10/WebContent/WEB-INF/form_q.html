@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	/* 	style 영역 수정하지 말것 */
+	.input_group {
+		height: 42px;
+		border-bottom: 1px dotted #ccc;
+		font: 1em/40px '돋움', 'Helvetica';
+	}
+	
+	.input_group > label {
+		width: 80px; display: inline-block;
+	}
+</style>
+</head>
+<body>
+	<form name="form1" onsubmit="doSubmit(); return false;">
+		<fieldset>
+			<legend>회원가입</legend>
+			<div class="input_group first">
+				<label>이름</label>
+				<input type="text" name="user_name" />
+			</div>
+			<div class="input_group">
+				<label>성별</label>
+				<label><input type="radio" name="gender" value="M"> 남자</label>
+				<label><input type="radio" name="gender" value="F"> 여자</label>
+			</div>
+			<div class="input_group">
+				<label>직업</label>
+				<select name="job">
+					<option>----- 선택하세요 -----</option>
+					<option value="dev">프로그래머</option>
+					<option value="pub">퍼블리셔</option>
+				</select>
+			</div>
+			<div class="input_group">
+				<label>취미</label>
+				<label><input type="checkbox" value="축구" name="hobby"> 축구</label>
+				<label><input type="checkbox" value="농구" name="hobby"> 농구</label>
+				<label><input type="checkbox" value="야구" name="hobby"> 야구</label>
+			</div>
+			<div class="input_group">
+				<label>&nbsp;</label>
+				<input type="submit" name="button" value="제출" />
+				<input type="button" name="button2" value="리셋" />
+			</div>
+		</fieldset>
+	</form>
+	
+	<script>
+		// 작성 필요
+		function doSubmit() {
+				// 1.폼 객체
+				// (애플리케이션 테스트 수행 결과에서 발견된 결함을 식별하고 조치에 대한 우선순위를 결정하고 적용할 수 있다).(10)
+				let frm = document.form1;
+						
+				// 2.text 요소의 입력여부 검사
+				// (결함이 발생한 소스를 분석하고 기존에 구현된 로직과의 연관성을 고려하여 부작용이 최소화되도록 결함을 제거할 수 있다.)(10)
+				if( !frm.user_name.value ){
+					alert("이름을 입력해 주세요");
+					frm.user_name.focus();
+					return false;
+				}
+				
+				// 3.라디오 버튼의 입력여부 검사.
+				// (애플리케이션 테스트 결과 결함 조치로 변경되는 소스의 버전을 관리하고 결함 조치 결과에 대한 이력을 관리할 수 있다.)(10)
+				if( !frm.gender[0].checked && !frm.gender[1].checked ){
+					alert("성별을 선택해 주세요");
+					frm.gender[0].focus();
+					return false;
+				}
+				
+				// 4.select 요소에 대한 선택위치 검사
+				// (애플리케이션 테스트 계획에 따라 서버모듈ㆍ화면모듈ㆍ데이터입출력ㆍ인터페이스 등 기능단위가 요구사항을 충족하는지에 대한 테스트를 수행할 수 있다.)(10)
+				if(frm.job.selectedIndex < 1){
+					alert("직업을 선택해 주세요");
+					frm.job.focus();
+					return false;
+				}
+				
+				// 5.체크박스의 선택여부 검사
+				// (애플리케이션 테스트 수행으로 발견된 결함을 유형별로 기록 할 수 있다.)(10)
+				let chk = false;
+				for( let i = 0; i < frm.hobby.length; i++ ){
+					if( frm.hobby[i].checked ){
+						chk = true;
+						break;
+					}
+				}
+				
+				if( !chk ){
+					alert("취미를 선택해 주세요");
+					frm.hobby[0].focus();
+					return false;
+				}
+				
+				
+				// 입력확인하기
+				if (confirm("입력하신 내용이 맞습니까?")) {
+					// 6.form 전송
+					// (애플리케이션 테스트 수행 결과 발견된 결함에 대해서 원인을 분석하고 개선 방안을 도출할 수 있다.)(20)
+					frm.submit();
+				}
+			}
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

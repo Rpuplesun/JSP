@@ -6,6 +6,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="join" parameterType="userdto">
 		INSERT INTO "user" VALUES (#{userid}, #{userpw}, #{username},#{userphone}, #{useraddr})
 	</insert>
+	
+	<select id="login" parameterType="hashmap" resultType="_int">
+		SELECT COUNT(*) FROM "user" WHERE USERID = #{userid} AND USERPW = #{userpw}
+	</select>
 
 </mapper>
 

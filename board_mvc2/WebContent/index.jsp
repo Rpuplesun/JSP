@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="./app/user/joinview.jsp">회원가입</a><br>
-	<a href="${pageContext.request.contextPath }/user/userLogin.us">로그인</a>
+	<a href="">[글 쓰기]</a><br>
+	<a href="${pageContext.request.contextPath }/board/Boardlist.bo">[글 목록]</a>
 </body>
 </html>

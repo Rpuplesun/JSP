@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="./app/user/joinview.jsp">회원가입</a><br>
-	<a href="${pageContext.request.contextPath }/user/userLogin.us">로그인</a>
+	메인뷰!
 </body>
 </html>

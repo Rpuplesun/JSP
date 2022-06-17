@@ -3,10 +3,19 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Board">
-	<select id="getBoardList" resultType="boarddto">
-		SELECT * FROM TBL_BOARD ORDER BY BOARDNUM DESC
-	</select>
 
+	<select id="getBoardList" resultType="boarddto" parameterType="hashmap">
+<!-- 		SELECT * FROM TBL_BOARD ORDER BY BOARDNUM DESC -->
+	SELECT *
+	FROM (SELECT rownum R, D.*
+			FROM (SELECT * FROM TBL_BOARD ORDER BY BOARDNUM DESC) D) B
+	WHERE B.R BETWEEN #{startRow} AND #{endRow}
+	</select>
+	
+	<select id="getBoardCnt" resultType="_int">
+		SELECT COUNT(*) FROM TBL_BOARD
+	</select>
+	
 </mapper>
 
 

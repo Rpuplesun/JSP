@@ -32,9 +32,16 @@ public class BoardFrontController extends HttpServlet {
 		case "/board/Boardlist.bo":
 			forward = new BoardListAction().execute(req, resp);
 			break;
-
+		case "/board/BoardWrite.bo":
+			forward = new ActionForward(true, req.getContextPath() + "/app/board/boardwrite.jsp");
+			break;
+		case "/board/BoardWriteOk.bo":
+			forward = new BoardWriteOkAction().execute(req, resp);
+			break;
+		case "/board/BoardView.bo":
+			forward = new BoardViewAction().execute(req, resp);
+			break;
 		}
-		
 		
 		if( forward != null ){
 			if( forward.isRedirect() ) {	// redirect

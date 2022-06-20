@@ -16,6 +16,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT COUNT(*) FROM TBL_BOARD
 	</select>
 	
+	<insert id="insertBoard" parameterType="boarddto">
+		INSERT INTO TBL_BOARD VALUES(BOARD_SEQ.NEXTVAL, #{boardtitle}, #{boardcontent}, #{username}, SYSDATE, 0)
+	</insert>
+	
+	<select id="getDetail" parameterType="_int" resultType="boarddto">
+		SELECT * FROM TBL_BOARD WHERE BOARDNUM = #{boardnum}
+	</select>
+	
+	<update id="updateReadCount" parameterType="_int">
+		UPDATE TBL_BOARD SET BOARDREADCOUNT = BOARDREADCOUNT + 1 WHERE BOARDNUM = #{boardnum}
+	</update>
+	
+	<select id="getSeq" resultType="_int">
+		SELECT board_seq.currval FROM dual
+	</select>
 </mapper>
 
 

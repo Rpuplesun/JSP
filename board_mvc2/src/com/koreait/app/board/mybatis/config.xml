@@ -6,6 +6,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	
 	<typeAliases>
 		<typeAlias type="com.koreait.app.board.dao.BoardDTO" alias="boarddto"/>
+		<typeAlias type="com.koreait.app.board.dao.ReplyDTO" alias="replydto"/>
 	</typeAliases>
 
 	<environments default="development">

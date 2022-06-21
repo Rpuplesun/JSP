@@ -31,6 +31,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getSeq" resultType="_int">
 		SELECT board_seq.currval FROM dual
 	</select>
+	
+	<insert id="addReply" parameterType="replydto">
+		INSERT INTO TBL_REPLY VALUES (reply_seq.nextval, #{replycontents}, #{username}, #{password}, #{boardnum})
+	</insert>
+	
+	<select id="getReplys" parameterType="_int" resultType="replydto">
+		SELECT * FROM TBL_REPLY WHERE boardnum = #{boardnum}
+	</select>
+	
+	<update id="updateReply" parameterType="hashmap">
+		UPDATE TBL_REPLY SET replycontents = #{replycontents} WHERE replynum = #{replynum}
+	</update>
+	
+	<delete id="deleteReply" parameterType="_int">
+		delete from TBL_REPLY where replynum = #{replynum}
+	</delete>
 </mapper>
 
 

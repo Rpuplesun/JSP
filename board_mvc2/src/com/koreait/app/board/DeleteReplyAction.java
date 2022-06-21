@@ -7,33 +7,22 @@ import com.koreait.action.Action;
 import com.koreait.action.ActionForward;
 import com.koreait.app.board.dao.BoardDAO;
 
-public class BoardViewAction implements Action {
+public class DeleteReplyAction implements Action{
 
+	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse resp) {
 		ActionForward forward = new ActionForward();
 		BoardDAO bdao = new BoardDAO();
 		
-		int boardnum = Integer.parseInt(req.getParameter("boardnum"));
+		int replynum = Integer.parseInt(req.getParameter("replynum"));
+		String boardnum = req.getParameter("boardnum");
 		
-		// 조회수 update
-		bdao.updateReadCount(boardnum);
-		
-		req.setAttribute("replylist", bdao.getReplys(boardnum));
-		req.setAttribute("board", bdao.getDetail(boardnum));
-		forward.setRedirect(false);
-		forward.setPath("/app/board/boardview.jsp");
+		if(bdao.deleteReply(replynum)) {
+			forward.setRedirect(true);
+			forward.setPath(req.getContextPath() + "/board/BoardView.bo?boardnum=" + boardnum);
+		}
 		
 		return forward;
-	} 
+	}
 
 }
-
-
-
-
-
-
-
-
-
-
